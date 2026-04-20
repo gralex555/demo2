@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+
+  tika:
+    image: apache/tika:3.2.3.0-full
+    container_name: tika-server
+    ports:
+      - "9998:9998"
+    restart: unless-stopped
+    # Опционально: ограничить память
+    mem_limit: 2g
+    # для проверки открыл в браузере http://localhost:9998 → welcome-страницу Tika
