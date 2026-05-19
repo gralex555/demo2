@@ -1,18 +1,19 @@
 package com.alexey.order.controller;
-
-import com.alexey.order.service.SenderService;
+import com.alexey.order.service.FileValidationChain;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
 public class TestKafkaController {
-    final SenderService senderService;
+ //   final SenderService senderService;
+    final FileValidationChain fileValidationChain;
 
     @GetMapping("/sendTestRequest")
-    public void sendTestRequest(@RequestParam String fileName) {
-        senderService.sendKafkaMessage("storage-service", fileName);
+    public void sendTestRequest(@RequestPart MultipartFile dto, @RequestParam boolean strictMode) throws IOException {
+        fileValidationChain.validate(dto, strictMode);
     }
 }

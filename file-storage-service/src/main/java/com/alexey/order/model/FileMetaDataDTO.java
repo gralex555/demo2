@@ -1,4 +1,6 @@
-package com.alexey.order.DTO.Kafka;
+package com.alexey.order.model;
+
+import org.apache.kafka.common.protocol.types.Field;
 
 import java.time.Instant;
 import java.util.UUID;

@@ -1,5 +1,5 @@
 file:
-  allowed-extension: pdf,docs,txt,jpg
+  allowed-extension: pdf,docs,txt,jpg,xlsx
 spring:
   kafka:
     bootstrap-service: localhost:9092
