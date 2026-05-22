@@ -37,24 +37,22 @@ public class KafkaConfig {
     public ProducerFactory<Long, byte[]> producerFactory() {
         Map<String, Object> map = new HashMap<>();
         map.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapService);
-        map.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
-        map.put(ProducerConfig.TRANSACTIONAL_ID_CONFIG, "trx-");
 
         return new DefaultKafkaProducerFactory<>(map, new LongSerializer(), new ByteArraySerializer());
     }
 
     @Bean
     public KafkaTemplate<Long, byte[]> kafkaTemplate(){
-        KafkaTemplate<Long, byte[]> template = new KafkaTemplate<>(producerFactory(), kafkaTransactionManager());
+        KafkaTemplate<Long, byte[]> template = new KafkaTemplate<>(producerFactory());
 
         return template;
     }
 
-    @Bean
-    public KafkaTransactionManager<Long, byte[]> kafkaTransactionManager(ProducerFactory<Long, byte[]> producerFactory) {
-        return new KafkaTransactionManager<>(producerFactory);
-    }
-// чтобы данные отправились гарантированно
+//    @Bean
+//    public KafkaTransactionManager<Long, byte[]> kafkaTransactionManager(ProducerFactory<Long, byte[]> producerFactory) {
+//        return new KafkaTransactionManager<>(producerFactory);
+//    }
+
 
 }
 

@@ -27,11 +27,11 @@ public class KafkaHandler {
 
 
     @KafkaListener(topics = "file-metadataTopic", groupId = "group")
-    public void handleFileEvent(String message, Acknowledgment acknowledgment) {
+    public void handleFileEvent(String message) {
         System.out.println("Пришло сообщение от Kafka");
         FileMetaDataDTO fileMetaDataDTO = objectMapper.readValue(message, FileMetaDataDTO.class);
         System.out.println(fileMetaDataDTO);
-        acknowledgment.acknowledge();  // говорим, что сообщение обработано
+
 
     }
 

@@ -31,9 +31,9 @@ public class KafkaConfig {
        probs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
        probs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
        probs.put(ConsumerConfig.GROUP_ID_CONFIG, "group");
-       probs.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_commited");
-       probs.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-       probs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
+//       probs.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_commited");
+//       probs.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+//       probs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 
        return new DefaultKafkaConsumerFactory<>(probs);
    }
@@ -43,7 +43,6 @@ public class KafkaConfig {
        ConcurrentKafkaListenerContainerFactory<Long, byte[]> factory = new ConcurrentKafkaListenerContainerFactory<>();
        factory.setConsumerFactory(consumerFactory());
 
-       factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.RECORD);
        return factory;
     }
 
