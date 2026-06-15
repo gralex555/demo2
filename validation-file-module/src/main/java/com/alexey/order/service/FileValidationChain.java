@@ -7,6 +7,7 @@ import com.alexey.order.validation.ContentValidator;
 import com.alexey.order.validation.ExtensionValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import tools.jackson.databind.ObjectMapper;
@@ -23,7 +24,7 @@ public class FileValidationChain {
     private final List<FileValidator> validators;  // внедряет все классы наследующиеся от интерфеса FileValidator(ContentValidator and ExtensionValidator)
     private final SenderService senderService;
     private final ObjectMapper objectMapper;
-
+    
     public void validate(MultipartFile file, boolean strictMode) throws IOException {
         log.info("Start Validation for file" + file.getOriginalFilename());
 //        for(FileValidator fileValidator:validators) {

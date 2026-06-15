@@ -1,6 +1,11 @@
 file:
   allowed-extension: pdf,docs,txt,jpg,xlsx
 spring:
+  data:
+    redis:
+      host: localhost
+      port: 6378
+
   kafka:
     bootstrap-service: localhost:9092
 
